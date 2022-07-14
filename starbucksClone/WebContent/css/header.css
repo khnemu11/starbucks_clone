@@ -1,0 +1,265 @@
+header{
+    background-color:#f6f5ef;
+}
+ul{
+    padding-inline-start: 13px;
+}
+a{
+    text-decoration:none;
+}
+h2 a,li a{
+    color:white;
+}
+
+.container{
+    background-color: white;
+    height:1500px;
+}
+.center{
+    display:flex;
+    justify-content:center;
+}
+header{
+    width:100vw;
+    
+}
+.header-content{
+    width:100%;
+    max-width:960px;
+    height:120px;
+    display:flex;
+    justify-content:center;
+    background-color:greenyellow;
+}
+.header-left,.header-right{
+    width:100%;
+}
+.header-left{
+    width:50%;
+    display:flex;
+    align-items:center;
+}
+.logo{
+    width:65px;
+    height:65px; 
+    padding:15px;
+}
+.drop-menu{
+    position:absolute;
+    height:20px;
+    width:100vw;
+    transition:height 1s;
+    background-color:yellow;
+}
+.drop-menu:hover{
+    height:200px;
+    transition:height 1s;
+}
+.center{
+    display:flex;
+    justify-content:center;
+}
+header{
+    width:100vw;
+    
+}
+.header-content{
+    width:100%;
+    max-width:960px;
+    height:120px;
+    display:flex;
+    justify-content:center;
+    background-color:#f6f5ef;
+}
+.header-left,.header-right{
+    width:100%;
+}
+.header-left{
+    width:50%;
+    display:flex;
+    align-items:center;
+}
+.logo{
+    width:65px;
+    height:65px; 
+    padding:15px;
+}
+.header-right-upper,.header-right-bottom{
+    width:100%;
+    height:50%;
+}
+.header-right-upper{
+    height:40%;
+    display:flex;
+    justify-content:end;
+}
+.header-right-bottom{
+    height:60%;
+}
+.right-upper-text{
+    margin-right:20px;
+    font: normal 13px Avenir;  
+}
+.search{
+    height:13px;
+    margin-right:0px;
+    width:0px;
+    visibility: hidden;
+    transition:width 1s;
+}
+.search-icon{
+    margin-right:20px;
+    height:19px;
+}
+.search-icon:hover{
+    cursor:pointer;
+}
+.header-right-upper,.header-right-bottom{
+    width:100%;
+    height:50%;
+}
+.header-right-upper{
+    height:40%;
+    display:flex;
+    justify-content:end;
+    background-color:#f6f5ef;
+
+}
+.right-upper-text{
+    margin-top:10px;
+    margin-right:15px;
+    font: normal 13px Avenir;  
+    display:flex;
+}
+.search{
+    height:13px;
+    margin-right:0px;
+    border:none;
+    margin-top:7px;
+}
+.search-icon{
+    margin-right:5px;
+    height:19px;
+    margin-top:5px;
+}
+.search-icon:hover{
+    cursor:pointer;
+}
+.search-wrapper{
+    display:flex;
+    border:1px solid;
+    border-radius:6px;
+    height:27px;
+    background-color:white;
+    display:flex;
+    align-items:top;
+    margin-top:5px;
+}
+.header-right-bottom{
+    height:60%;
+    display:flex;
+    justify-content:end;
+}
+.menu{
+    height:88%;
+    padding-left:20px;
+    padding-right:20px;
+    margin-top:10px;
+}
+.menu:hover{
+    color:green;
+    background-color:black;
+    cursor:pointer;
+    text-decoration:underline;
+}
+.menu-drop{
+    position:absolute;
+    width:100vw;
+    height:fit-content;
+    overflow:hidden;
+    background-color:black;
+    color:white;
+}
+
+.drop-top,.drop-bottom{
+      font: normal 13px Avenir; 
+      width:100vw;
+      height:fit-content;
+      display:flex;
+      justify-content:center;
+      background-color:#2C2A29;
+      padding-bottom:20px;
+    
+}
+.drop-top ul{
+     list-style-type:none;
+     width:100%;
+     max-width:960px;
+     float:left;
+     margin:0px;
+    
+}
+.drop-top ul li ul{
+     list-style-type:none;
+     width:fit-content;
+     min-width:13%;
+     height:fit-content;
+     padding-right:30px;
+     float:left;
+}
+
+.drop-top ul li ul li a{
+     font-size:12px;
+     width:fit-content;
+     color:grey;
+}
+.drop-top ul li ul h2{
+    font-size:14px;
+}
+.drop-bottom{
+    background-image:url("../img/gnb_sub_txbg.jpg");
+    width:100vw;
+    height:fit-content;
+    padding-top:25px;
+    padding-bottom:25px;
+    display:flex;
+    justify-content:start;
+    align-items:center;
+}
+.drop-bottom ul{
+   width:100%;;
+   max-width:960px;
+   margin:0 auto; 
+   list-style-type:none;
+}
+.menu-drop-wrapper{
+    position:absolute;
+    width:100vw;
+    height:0px;
+    overflow:hidden;
+    background-color:black;
+    color:white;
+    transition:height 1s;
+}
+.drop-bottom ul li ul li:last-child{
+    color:green;
+}
+#menu-5-drop div div ul li ul {
+    min-width:16%;
+}
+.footer{
+    background-color:#2C2A29;
+}
+
+header{
+    position:sticky;
+    top:0px;
+}
+.right-upper-text{
+    color:black;
+}
+body{
+    padding:0px;
+    margin:0px;
+    overflow-x:hidden;
+}
