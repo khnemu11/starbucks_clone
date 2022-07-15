@@ -48,3 +48,7 @@
     font-size:70px;
     padding-left:30px;
 }
+.coffee_bean a img{
+    max-height:300px;
+    max-width:300px;
+}

@@ -7,7 +7,7 @@
 	<a href="index.jsp">View All Records</a><br/>
 	
 	<h1>Add 커피 Coffee</h1>
-	<form action="adduser.jsp" method="post">
+	<form action="adduser.jsp" method="post" enctype="multipart/form-data">
 	<table>
 	<tr><td>Name Korean:</td><td><input type="text" name="name_kr" ></td></tr>
 	<tr><td>Name English</td><td><input type="text" name="name_en" ></td></tr>
@@ -24,6 +24,7 @@
 	<tr><td>tasting_notes</td><td><input type="text" name="tasting_notes" ></td></tr>
 	<tr><td>enjoy_with</td><td><input type="text" name="enjoy_with" ></td></tr>
 	<tr><td>relative</td><td><input type="text" name="relative"></td></tr>
+	<tr><td>file</td><td><input type="file" name="file"></td></tr>
 	</td></tr>
 	<tr><td colspan="2"><input type="submit" value="Add Coffee"/></td></tr>
 	</table>

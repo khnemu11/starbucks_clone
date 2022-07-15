@@ -64,9 +64,9 @@
 						<p>${coffee.description_summary}</p>
 					</div>
 					<div class="type-wrapper">
-						<div class="type">
 							<c:choose>
 								<c:when test="${coffee.type eq 'dark_roast'}">
+									<div class="type">
 									<div class="type-left">
 										<img src="./img/icon/${coffee.type}.png"/>
 									</div>
@@ -74,8 +74,10 @@
 										<h3>${coffee.type}</h3>
 										<p>강렬하고 강인한 맛 Strong & Powerful</p>
 									</div>		
+									</div>
 								</c:when>
 								<c:when test="${coffee.type eq 'blond_roast'}">
+									<div class="type">
 									<div class="type-left">
 										<img src="./img/icon/${coffee.type}.png"/>
 									</div>
@@ -83,22 +85,20 @@
 										<h3>${coffee.type}</h3>
 										<p>은은하고 부드러운 맛 Subtle & Mellow</p>
 									</div>
+									</div>
 								</c:when>
 								<c:when test="${coffee.type eq 'medium_roast'}">
+									<div class="type">
 									<div class="type-left">
 										<img src="./img/icon/${coffee.type}.png"/>
 									</div>
 									<div class=type-right>
 										<h3>${coffee.type}</h3>
-											<p>균형잡힌 부드러움 Balance & Mellow</p>
+										<p>균형잡힌 부드러움 Balance & Mellow</p>
+									</div>
 									</div>
 								</c:when>
-								<c:otherwise>
-									<p></p>
-								</c:otherwise>
 							</c:choose>
-						</div>
-						
 					</div>
 					<div class="weight">
 						<p>250g</p>

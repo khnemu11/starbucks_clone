@@ -29,7 +29,7 @@
 		<div class="container-name">
 		<h2>커피</h2>
 		<span class="title-home">
-			<span class="material-symbols-outlined">home</span>&nbsp;
+			<span class="material-symbols-outlined home">home</span>&nbsp;
 			<span> COFFEE > 커피</span>
 			&nbsp;&nbsp;<a href="adduserform.jsp"><span class="material-symbols-outlined add">add</span></a>
 		</span>
@@ -65,7 +65,7 @@
 					<c:choose>
 						<c:when test="${u.type eq 'medium_roast'}">
 								<span class="coffee_bean">
-									<img src="./img/coffee_bean/coffee_bean_${u.seq}.jpg"/>
+									<a href="./coffee_bean_detail.jsp?seq=${u.seq}"><img src="./img/coffee_bean/coffee_bean_${u.seq}.jpg"/></a>
 									<span class="coffee_bean_name">${u.name_kr}</span>
 								</span>
 						</c:when>
@@ -84,7 +84,7 @@
 					<c:choose>
 						<c:when test="${u.type eq 'dark_roast'}">
 								<span class="coffee_bean">
-									<img src="./img/coffee_bean/coffee_bean_${u.seq}.jpg"/>
+									<a href="./coffee_bean_detail.jsp?seq=${u.seq}"><img src="./img/coffee_bean/coffee_bean_${u.seq}.jpg"/></a>
 									<span class="coffee_bean_name">${u.name_kr}</span>
 								</span>
 						</c:when>
@@ -103,7 +103,7 @@
 					<c:choose>
 						<c:when test="${u.type eq 'reserve_roast'}">
 								<span class="coffee_bean">
-									<img src="./img/coffee_bean/coffee_bean_${u.seq}.jpg"/>
+									<a href="./coffee_bean_detail.jsp?seq=${u.seq}"><img src="./img/coffee_bean/coffee_bean_${u.seq}.jpg"/></a>
 									<span class="coffee_bean_name">${u.name_kr}</span>
 								</span>
 						</c:when>

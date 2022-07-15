@@ -1,8 +1,14 @@
 package starbucksClone.dao;
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import starbucksClone.bean.Coffee;
 
@@ -18,20 +24,18 @@ public class CoffeeDao {
 		return con;
 	}
 
-	public static int save(Coffee u) {
+	public static int save(Coffee u) throws IOException {
+		System.out.println("insert "+u.getName_kr()+" start");
 		int status = 0;
+		String filename = u.getFilename();
 		try {
 			Connection con = getConnection();
 			PreparedStatement ps = con
 					.prepareStatement("insert into starbucks.coffee (name_kr, "
 							+ "name_en, type, description_summary,"
 							+ " description_detail, design_story,coffee_tasting_note"
-							+ ",enjoy_with, relative) \r\n"
-							+ "values (?,?,?,?,?,?,?,?,?);");
-			
-			 System.out.println("insert "+u.getName_kr()+" start");
-			
-			
+							+ ",tasting_notes,enjoy_with, relative) \r\n"
+							+ "values (?,?,?,?,?,?,?,?,?,?);");
 			  ps.setString(1,u.getName_kr()); 
 			  ps.setString(2,u.getName_en());
 			  ps.setString(3,u.getType()); 
@@ -39,10 +43,26 @@ public class CoffeeDao {
 			  ps.setString(5,u.getDescription_detail());
 			  ps.setString(6,u.getDesign_story());
 			  ps.setString(7,u.getCoffee_tasting_note());
-			  ps.setString(8,u.getEnjoy_with());
-			  ps.setString(9,u.getRelative());
-			 
-			status = ps.executeUpdate();
+			  ps.setString(8,u.getTasting_notes());
+			  ps.setString(9,u.getEnjoy_with());
+			  ps.setString(10,u.getRelative());
+
+			  status = ps.executeUpdate();
+			  
+			  System.out.println("insert finish");
+			  
+			  ps = con.prepareStatement("select * from starbucks.coffee where name_kr = ?");
+			  ps.setString(1, u.getName_kr());
+			  ResultSet rs = ps.executeQuery(); 
+			  if (rs.next()) {
+				  System.out.println("seq : "+rs.getLong("seq"));
+				  Path originalFile = Paths.get("C:/Users/PC/git/starbucks_clone/starbucksClone/WebContent/img/coffee_bean/"+filename);
+				  Path newFile = Paths.get("C:/Users/PC/git/starbucks_clone/starbucksClone/WebContent/img/coffee_bean/coffee_bean_"+rs.getLong("seq")+".jpg");
+				  
+				  
+				  Path newFilePath = Files.move(originalFile, newFile);
+			  }
+			  
 		} catch (Exception e) {
 			System.out.println(e);
 		}

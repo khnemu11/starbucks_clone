@@ -1,5 +1,7 @@
 package starbucksClone.bean;
 
+import java.io.File;
+
 public class Coffee{
 	private Long seq;
 	private String name_kr;
@@ -13,6 +15,8 @@ public class Coffee{
 	private String tasting_notes;
 	private String enjoy_with;
 	private String relative;
+	private String filename;
+
 	public String getRelative() {
 		return relative;
 	}
@@ -84,6 +88,12 @@ public class Coffee{
 	}
 	public void setSeq(Long seq) {
 		this.seq = seq;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 	
 }
