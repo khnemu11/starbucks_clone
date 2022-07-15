@@ -1,6 +1,7 @@
-<%@page import="com.starbuck.dao.CoffeeDao"%>
+<%@page import="starbucksClone.dao.CoffeeDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="u" class="starbucksClone.bean.Coffee"></jsp:useBean>
 <jsp:setProperty property="*" name="u"/>
 

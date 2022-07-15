@@ -4,5 +4,5 @@
 
 <%
 CoffeeDao.delete(u);
-response.sendRedirect("viewusers.jsp");
+response.sendRedirect("index.jsp");
 %>

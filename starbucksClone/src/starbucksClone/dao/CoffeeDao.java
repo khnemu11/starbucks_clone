@@ -11,7 +11,7 @@ public class CoffeeDao {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/starbucks", "root", "as4503^^");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/starbucks?characterEncoding=UTF-8", "root", "as4503^^");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -28,6 +28,9 @@ public class CoffeeDao {
 							+ " description_detail, design_story,coffee_tasting_note"
 							+ ",enjoy_with, relative) \r\n"
 							+ "values (?,?,?,?,?,?,?,?,?);");
+			
+			 System.out.println("insert "+u.getName_kr()+" start");
+			
 			
 			  ps.setString(1,u.getName_kr()); 
 			  ps.setString(2,u.getName_en());

@@ -4,5 +4,5 @@
 
 <%
 int i=CoffeeDao.update(u);
-response.sendRedirect("viewusers.jsp");
+response.sendRedirect("./coffee_bean_detail.jsp?seq="+u.getSeq());
 %>

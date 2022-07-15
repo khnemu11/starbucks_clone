@@ -2,6 +2,8 @@ var menu=['#menu-1','#menu-2', '#menu-3','#menu-4','#menu-5','#menu-6'];
 
 menu.forEach(showMenu);
 menu.forEach(closeMenu);
+console.log("ready");
+$(".fb-share-button").click();
 
 $(".search-icon").click(function() { 
     $(".search").css("visibility","visible");
