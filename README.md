@@ -16,6 +16,11 @@ add, edit, list CRUD 백엔드 1차 완료
 
 07/16
   1)데이터 베이스 heroku의 cleanDB로 교체
+  
   2)사진 변경 기능 구현
+  
   3)직관성 있게 파일 이름 변경
+  
   4)heroku 배포 완료
+  
+  https://ksh-starbucks-clone.herokuapp.com/
