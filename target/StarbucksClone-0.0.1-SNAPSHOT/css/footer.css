@@ -1,0 +1,119 @@
+footer{
+    background-color:#2C2A29;
+    height:fit-content;
+    width:100vw;
+}
+.footer-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:fit-content;
+}
+.footer-top{
+      font: normal 13px Avenir; 
+      width:100vw;
+      display:flex;
+      justify-content:center;
+      background-color:#2C2A29;
+      padding-bottom:50px;
+      padding-top:50px;
+}
+.footer-top ul{
+     list-style-type:none;
+     width:100%;
+     max-width:960px;
+     float:left;
+     margin:0px;
+     padding-left:20px;
+    
+}
+.footer-top ul li ul{
+     list-style-type:none;
+     width:fit-content;
+     min-width:13%;
+     height:fit-content;
+     padding-right:20px;
+     float:left;
+}
+.footer-logo{
+    height:fit-content;
+    padding-right:70px;
+}
+.footer-middle{
+    width:100vw;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    background-color:#292929;
+    padding-top:30px;
+    padding-bottom:30px;
+}
+.footer-middle div{
+    display:flex;
+}
+@media screen and (max-width:1200px){
+    .footer-middle{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    } 
+}
+.footer-bottom{
+    color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.footer-bottom div{
+    color:white;
+}
+.footer-bottom-1st a{
+    padding-right:10px;
+    color:white;
+    border-right:1px solid grey;
+}
+.footer-bottom-1st{
+    display:flex;
+    padding-top:10px;
+    padding-bottom:5px;
+}
+.footer-bottom-2nd{
+    padding:30px;
+}
+.footer-bottom-2nd span{
+    border:1px solid;
+    padding:10px;
+    padding-left:20px;
+    padding-right:20px;
+    margin-left:10px;
+}
+.footer-bottom-last{
+    padding:10px;
+    color:grey !important;
+}
+.footer-bottom-last:last-child{
+    padding-bottom:50px;
+}
+.footer-bottom-2nd span a{
+    text-decoration:none;
+    color:white;
+}
+.footer-bottom-1st ul{
+    display:flex;
+    flex-direction:row;
+    list-style-type:none;
+}
+
+.footer-bottom-1st ul li{
+    display:flex;
+    flex-direction:row;
+    float:left;
+    list-style-type:none;
+    padding-left:10px;
+    font-size:12px;
+}
+.footer-bottom-1st ul li:nth-child(1) a{
+    color:green;
+}

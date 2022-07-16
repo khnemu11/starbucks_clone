@@ -1,4 +1,5 @@
 package starbucksClone.dao;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,8 +14,10 @@ public class CoffeeDao {
 	public static Connection getConnection() {
 		Connection con = null;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/starbucks?characterEncoding=UTF-8", "root", "as4503^^");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("Find class");
+			con = DriverManager.getConnection("jdbc:mysql://bbcd4d820494e1:9efbe081@us-cdbr-east-06.cleardb.net/heroku_93eb5d7b9e41d59?reconnect=true?characterEncoding=UTF-8&useSSL=false");
+			System.out.println("db connect success!");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -25,10 +28,22 @@ public class CoffeeDao {
 		System.out.println("insert "+u.getName_kr()+" start");
 		int status = 0;
 		String filename = u.getFilename();
+		String filepath = u.getFilepath();
 		try {
 			Connection con = getConnection();
-			PreparedStatement ps = con
-					.prepareStatement("insert into starbucks.coffee (name_kr, "
+			
+			PreparedStatement ps = con.prepareStatement("select count(*) as count from ksh_coffeebean where name_kr=?");
+			ps.setString(1, u.getName_kr());
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getLong("count")!=0) {
+					System.out.println(u.getName_kr()+" is already exists");
+					return status;
+				}
+			}
+			
+			ps = con.prepareStatement("insert into KSH_coffeeBean (name_kr, "
 							+ "name_en, type, description_summary,"
 							+ " description_detail, design_story,coffee_tasting_note"
 							+ ",tasting_notes,enjoy_with, relative) \r\n"
@@ -48,30 +63,51 @@ public class CoffeeDao {
 			  
 			  System.out.println("insert finish");
 			  
-			  ps = con.prepareStatement("select * from starbucks.coffee where name_kr = ?");
+			  ps = con.prepareStatement("select * from KSH_coffeeBean where name_kr = ?");
 			  ps.setString(1, u.getName_kr());
-			  ResultSet rs = ps.executeQuery(); 
+			  rs = ps.executeQuery(); 
 			  if (rs.next()) {
 				  System.out.println("seq : "+rs.getLong("seq"));
-				  Path originalFile = Paths.get("C:/Users/PC/git/starbucks_clone/starbucksClone/WebContent/img/coffee_bean/"+filename);
-				  Path newFile = Paths.get("C:/Users/PC/git/starbucks_clone/starbucksClone/WebContent/img/coffee_bean/coffee_bean_"+rs.getLong("seq")+".jpg");
+				  Path originalFile = Paths.get(filepath+"/"+filename);
+				  Path newFile = Paths.get(filepath+"/coffee_bean_"+rs.getLong("seq")+".jpg");
+				 
+				  File file = new File(filepath+"/coffee_bean_"+rs.getLong("seq")+".jpg");
+				  if(file.exists()) {
+					  file.delete();
+				  }
 				  
 				  
+				  System.out.println("originalFile path : "+originalFile);
+				  System.out.println("new file name : "+filepath+rs.getLong("seq")+".jpg");
+				 
 				  Path newFilePath = Files.move(originalFile, newFile);
 			  }
 			  
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		System.out.println("insert finish");
 		return status;
 	}
 
 	public static int update(Coffee u) {
 		int status = 0;
+		String filename = u.getFilename();
+		String filepath = u.getFilepath();
 		try {
 			Connection con = getConnection();
-			PreparedStatement ps = con
-					.prepareStatement("update starbucks.coffee set name_kr=?,name_en=?,"
+			PreparedStatement ps = con.prepareStatement("select count(*) as count from ksh_coffeebean where name_kr=? and seq != ?");
+			ps.setString(1, u.getName_kr());
+			ps.setLong(2, u.getSeq());
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getLong("count")!=0) {
+					System.out.println(u.getName_kr()+" is already exists");
+					return status;
+				}
+			}
+			ps = con.prepareStatement("update KSH_coffeeBean set name_kr=?,name_en=?,"
 							+ "type=?,description_summary=?,description_detail=?,design_story=?,"
 							+ "coffee_tasting_note=?,enjoy_with=?, relative=? where seq=?");
 
@@ -87,9 +123,31 @@ public class CoffeeDao {
 			  ps.setLong(10,u.getSeq());
 			
 			status = ps.executeUpdate();
+			
+			  System.out.println("update finish");
+			  
+			  ps = con.prepareStatement("select * from KSH_coffeeBean where name_kr = ?");
+			  ps.setString(1, u.getName_kr());
+			  rs = ps.executeQuery(); 
+			  if (rs.next()) {
+				  System.out.println("seq : "+rs.getLong("seq"));
+				  Path originalFile = Paths.get(filepath+"/"+filename);
+				  Path newFile = Paths.get(filepath+"/coffee_bean_"+rs.getLong("seq")+".jpg");
+				 
+				  File file = new File(filepath+"/coffee_bean_"+rs.getLong("seq")+".jpg");
+				  if(file.exists()) {
+					  file.delete();
+				  }
+				  System.out.println("originalFile path : "+originalFile);
+				  System.out.println("new file name : "+filepath+rs.getLong("seq")+".jpg");
+				 
+				  Path newFilePath = Files.move(originalFile, newFile);
+			  }
+			  
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+
 		return status;
 	}
 
@@ -97,7 +155,7 @@ public class CoffeeDao {
 		int status = 0;
 		try {
 			Connection con = getConnection();
-			PreparedStatement ps = con.prepareStatement("delete from starbucks.coffee where seq=?");
+			PreparedStatement ps = con.prepareStatement("delete from KSH_coffeeBean where seq=?");
 			ps.setLong(1,u.getSeq());
 			status = ps.executeUpdate();
 		} catch (Exception e) {
@@ -108,12 +166,15 @@ public class CoffeeDao {
 	}
 
 	public static List<Coffee> getAllRecords() {
+		System.out.println("getAllRecords start");
 		List<Coffee> list = new ArrayList<Coffee>();
 
 		try {
 			Connection con = getConnection();
-			PreparedStatement ps = con.prepareStatement("select * from starbucks.coffee");
+			PreparedStatement ps = con.prepareStatement("select * from KSH_coffeeBean");
+			System.out.println("getAllRecords : db connect start");
 			ResultSet rs = ps.executeQuery();
+			System.out.println("getAllRecords : db connect finish");
 			while (rs.next()) {
 				Coffee u = new Coffee();
 				
@@ -134,6 +195,7 @@ public class CoffeeDao {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		System.out.println("getAllRecords end");
 		return list;
 	}
 	public static Coffee getRecordBySeq(int seq) {
@@ -141,7 +203,7 @@ public class CoffeeDao {
 		Coffee u = null;
 		try {
 			Connection con = getConnection();
-			PreparedStatement ps = con.prepareStatement("select * from starbucks.coffee where seq=?");
+			PreparedStatement ps = con.prepareStatement("select * from KSH_coffeeBean where seq=?");
 			ps.setLong(1, seq);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -161,6 +223,8 @@ public class CoffeeDao {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+
+		System.out.println("getAllRecords finish");
 		return u;
 	}
 }

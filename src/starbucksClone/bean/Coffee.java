@@ -16,6 +16,7 @@ public class Coffee{
 	private String enjoy_with;
 	private String relative;
 	private String filename;
+	private String filepath;
 
 	public String getRelative() {
 		return relative;
@@ -94,6 +95,12 @@ public class Coffee{
 	}
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+	public String getFilepath() {
+		return filepath;
+	}
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
 	}
 	
 }
